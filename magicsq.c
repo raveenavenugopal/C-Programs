@@ -1,0 +1,115 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+main()
+{
+	int n,lr,tb,a,b,count=1,d,m[10][10],x,y,i,j;
+	printf("Enter the odd number\t:");
+	scanf("%d",&n);
+	a=n*n;
+	lr=n/2;
+	tb=0;
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			m[i][j]=0;
+		}
+	}
+	while(count<=a)
+	{
+		if(tb>=0&&lr<n){
+			b=tb;
+			d=lr;
+			if(m[b][d]==0){
+				m[b][d]=count;
+			count++;
+			lr++;
+			tb--;
+			}
+			else{
+				x=b+2;
+				y=d-1;
+				m[x][y]=count;
+				lr=y;
+				tb=x;
+				count++;
+				lr++;
+				tb--;
+			}
+			
+		}
+		if(tb<0&&lr<n){
+			x=n-1;
+			y=lr;
+			if(m[x][y]==0){
+				m[x][y]=count;
+				tb=x;
+				count++;
+				lr++;
+				tb--;
+			}
+			else{
+				b=tb+2;
+				d=lr-1;
+				m[b][d]=count;
+				tb=b;
+				lr=d;
+				count++;
+				lr++;
+				tb--;
+			}
+			
+		}
+		if(lr>=n&&tb>=0){
+			x=tb;
+			y=0;
+			if(m[x][y]==0){
+				m[x][y]=count;
+				lr=y;
+				count++;
+				lr++;
+				tb--;
+			}
+			else{
+				b=tb+2;
+				d=lr-1;
+				m[b][d]=count;
+				tb=b;
+				lr=d;
+				count++;
+				lr++;
+				tb--;
+			}
+			
+		}
+		if(tb<0&&lr>=n){
+			x=n-1;
+			y=0;
+			if(m[x][y]==0){
+				m[x][y]=count;
+				tb=x;
+				lr=y;
+				count++;
+				lr++;
+				tb--;
+			}
+			else{
+				x=tb+2;
+				y=lr-1;
+				m[x][y]=count;
+				tb=x;
+				lr=y;
+				count++;
+				lr++;
+				tb--;
+			
+			}
+			
+		}		
+		
+	}
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			printf("%d\t",m[i][j]);
+		}printf("\n\n");
+	}
+}
